@@ -566,7 +566,7 @@ class SPPELAN(nn.Module):
     def __init__(self, c1, c2, c3):  # ch_in, ch_out, number, shortcut, groups, expansion
         super().__init__()
         self.c = c3
-        self.cv1 = Conv(c1, c3, 3, 1, 1, 1,2)
+        self.cv1 = Conv(c1, c3, 1, 1,)
         self.cv2 = SP(5)
         self.cv3 = SP(5)
         self.cv4 = SP(5)
