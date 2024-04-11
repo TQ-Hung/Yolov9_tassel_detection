@@ -63,7 +63,6 @@ head:
 
    # avg-conv-down merge
    [-1, 1, Conv, [256, 3, 2]],
-   [-1, 1, GSConv, [256, 3, 1]],
    [[-1, 12], 1, Concat, [1]],  # cat head P4
 
    # elan-2 block
@@ -71,7 +70,6 @@ head:
 
    # avg-conv-down merge
    [-1, 1, Conv, [512, 3, 2]],
-   [-1, 1, GSConv, [512, 3, 1]],
    [[-1, 9], 1, Concat, [1]],  # cat head P5
 
    # elan-2 block
