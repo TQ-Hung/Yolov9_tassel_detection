@@ -1258,9 +1258,9 @@ class Conv1(nn.Module):
 class GSConv(nn.Module):
     def __init__(self, c1, c2, k=1, s=1, g=1, act=True):
         super().__init__()
-        c_ = c2 // 2
-        self.cv1 = Conv1(c1, c_, k, s, None, g, act)
-        self.cv2 = Conv1(c_, c_, 5, 1, None, c_, act)
+        c3 = c2 // 2
+        self.cv1 = Conv1(c1, c3, k, s, None, g, act)
+        self.cv2 = Conv1(c3, c3, 5, 1, None, g, act)
 
     def forward(self, x):
         x1 = self.cv1(x)
