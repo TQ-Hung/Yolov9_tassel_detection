@@ -77,5 +77,5 @@ head:
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 22 (P5/32-large)
 
    # detect
-   [[15, 20, 23], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[15, 19, 22], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
