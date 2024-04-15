@@ -69,11 +69,14 @@ head:
    [[-1, 17], 1, Concat, [1]],
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 19 (P4/16-medium)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 20 (P4/16-medium)
 
    # avg-conv-down merge
    [-1, 1, Conv, [512, 3, 2]],
    [[-1, 9], 1, Concat, [1]],  # cat head P5
+
+   [6, 1, Conv, [512, 1, 2]],
+   [[-1, 22], 1, Concat, [1]],
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 22 (P5/32-large)
