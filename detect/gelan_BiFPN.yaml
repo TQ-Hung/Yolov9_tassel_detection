@@ -65,14 +65,22 @@ head:
    [-1, 1, Conv, [256, 3, 2]],
    [[-1, 12], 1, Concat, [1]],  # cat head P4
    
-   [2, 1, Conv, [128, 1, 4]],
+   [2, 1, Conv, [256, 1, 8]],
    [[-1, 17], 1, Concat, [1]],
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 18 (P4/16-medium)
 
    # avg-conv-down merge
+   [-1, 1, Conv, [512, 3, 2]],
+   [[-1, 9], 1, Concat, [1]],  # cat head P5
+
+   [2, 1, Conv, [512, 1, 16]],
+   [[-1, 20], 1, Concat, [1]],
+
+   # elan-2 block
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 21 (P5/32-large)
 
    # detect
-   [[15, 18], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[15, 18, 21], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
