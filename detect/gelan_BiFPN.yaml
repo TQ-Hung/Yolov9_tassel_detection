@@ -63,9 +63,8 @@ head:
 
    # avg-conv-down merge
    [-1, 1, Conv, [256, 3, 2]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
    [[-1, 12], 1, Concat, [1]],  # cat head P4
-
-   [-1, 1, Conv, [768, 3, 2]],
    [[-1, 2], 1, Concat, [1]],
 
    # elan-2 block
