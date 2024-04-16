@@ -83,10 +83,13 @@ head:
    # avg-conv-down merge
    [-1, 1, Conv, [256, 3, 2, 1, 32]],
    [[-1, 13], 1, Concat, [1]],  # cat head P5
+
+   [12, 1, Conv, [256, 5, 1]],
+   [[-1, 26], 1, Concat, [1]],
    
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 29 (P5/32-large)
 
    # detect
-   [[19, 24, 27], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[19, 24, 29], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
