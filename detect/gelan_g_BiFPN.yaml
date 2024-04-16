@@ -74,7 +74,7 @@ head:
    [[-1, 3], 1, Concat, [1]],  # cat backbone P2
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [256, 25, 128, 1]],  # 23 (P3/8-small)
+   [-1, 1, RepNCSPELAN4, [128, 128, 64, 1]],  # 23 (P3/8-small)
    
    # detect
    [[16, 19, 23], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
