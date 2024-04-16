@@ -83,26 +83,6 @@ head:
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 25 (P5/32-large)
 
-   [6, 1, CBLinear, [[256], 1, 1, 1, 32]], # 26
-   [9, 1, CBLinear, [[256, 512], 1, 1, 1, 32]], # 27
-   [12, 1, CBLinear, [[256, 512, 512], 1, 1, 1, 32]], # 28
-   
-   # conv down
-   [0, 1, Conv, [64, 3, 2]],  # 29-P1/2
-
-   # conv down
-   [-1, 1, Conv, [128, 3, 2, 1, 16]],  # 30-P2/4
-
-   # elan-1 block
-   [-1, 1, RepNCSPELAN4, [256, 128, 64, 1]],  # 31
-
-   # conv down fuse
-   [-1, 1, Conv, [256, 3, 2, 1,32]],  # 29-P3/8
-   [[22, 23, 24, -1], 1, CBFuse, [[0, 0, 0]]], # 32
-    
-   # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 33
-
    # detect
-   [[19, 22, 25, 33], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[19, 22, 25], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
