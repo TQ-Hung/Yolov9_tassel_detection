@@ -18,25 +18,25 @@ backbone:
 
    [-1, 1, Conv, [64, 3, 1, 1, 8]],  #
    # conv down
-   [-1, 1, Conv, [128, 3, 2]],  # 1-P2/4
+   [-1, 1, Conv, [128, 3, 2, 1, 2]],  # 1-P2/4
 
    # elan-1 block
    [-1, 1, RepNCSPELAN4, [256, 128, 64, 1]],  # 2
 
    # avg-conv down
-   [-1, 1, Conv, [256, 3, 2]],  # 3-P3/8
+   [-1, 1, Conv, [256, 3, 2, 1, 32]],  # 3-P3/8
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 4
 
    # avg-conv down
-   [-1, 1, Conv, [512, 3, 2]],  # 5-P4/16
+   [-1, 1, Conv, [512, 3, 2, 1, 64]],  # 5-P4/16
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 6
 
    # avg-conv down
-   [-1, 1, Conv, [512, 3, 2]],  # 7-P5/32
+   [-1, 1, Conv, [512, 3, 2, 1, 64]],  # 7-P5/32
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 8
@@ -56,7 +56,7 @@ head:
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 12
 
    # up-concat merge
-   [-1, 1, Conv, [128, 3, 1]],  # Conv P3
+   [-1, 1, Conv, [128, 3, 1, 1, 16]],  # Conv P3
    [-1, 1, nn.Upsample, [None, 2, 'nearest']],
    [[-1, 5], 1, Concat, [1]],  # cat backbone P3
 
@@ -64,24 +64,24 @@ head:
    [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 16 
 
    # avg-conv-down merge
-   [-1, 1, Conv, [256, 3, 1]],  # Conv P2
+   [-1, 1, Conv, [256, 3, 1, 1, 32]],  # Conv P2
    [-1, 1, nn.Upsample, [None, 2, 'nearest']],
    [[-1, 3], 1, Concat, [1]],  # cat backbone P2
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 20 (P1_large)
 
-   [-1, 1, Conv, [512, 3, 2]],  #
+   [-1, 1, Conv, [512, 3, 2, 1, 64]],  #
    [[-1, 18], 1, Concat, [1]],  # cat head Conv P2
 
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 23 (P2_medium)
 
-   [-1, 1, Conv, [512, 3, 2]],  #
+   [-1, 1, Conv, [512, 3, 2, 1, 64]],  #
    [[-1, 14], 1, Concat, [1]],  # cat head Conv P3
 
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 26 (P1_small)
    
-   [-1, 1, Conv, [512, 3, 2]],  #
+   [-1, 1, Conv, [512, 3, 2, 1, 64]],  #
    [[-1, 10], 1, Concat, [1]],  # cat head P4
 
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 29 (P1_verysmall)
