@@ -78,8 +78,13 @@ head:
    [-1, 1, Conv, [512, 3, 2]],  #
    [[-1, 13], 1, Concat, [1]],  # cat head Conv P3
 
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 23 (P1_small)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 26 (P1_small)
+   
+   [-1, 1, Conv, [512, 3, 2]],  #
+   [[-1, 9], 1, Concat, [1]],  # cat head P4
 
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 29 (P1_verysmall)
+   
    # detect
-   [[12, 16, 20], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[20, 23, 26, 29], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
