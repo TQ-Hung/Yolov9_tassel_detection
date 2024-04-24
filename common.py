@@ -19,6 +19,7 @@ import requests
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch import Tensor
 from IPython.display import display
 from PIL import Image
 from torch.cuda import amp
@@ -1212,17 +1213,17 @@ class Classify(nn.Module):
             x = torch.cat(x, 1)
         return self.linear(self.drop(self.pool(self.conv(x)).flatten(1)))
       
-class GhostConv(nn.Module):
-    def __init__(self, c1, c2, k=1, s=1, g=1, act=True, w=None):
-        """Initializes GhostConv with in/out channels, kernel size, stride, groups, and activation; halves out channels
-        for efficiency.
-        """
-        super(GhostConv, self).__init__()
-        c_ = c2 // 2  # hidden channels
-        self.cv1 = Conv(c1, c_, k, s, g, act=act, w=w.cv1)
-        self.cv2 = DWConv(c_, c_, 5, 1, act=act, d=1, w=w.cv2)
+class ChannelShuffle(nn.Module):
+    __constants__ = ['groups']
+    groups: int
 
-    def forward(self, inputs):
-        y = self.cv1(inputs)
-        return torch.cat((y, self.cv2(y)), dim=1)
+    def __init__(self, groups: int) -> None:
+        super().__init__()
+        self.groups = groups
+
+    def forward(self, input: Tensor) -> Tensor:
+        return F.channel_shuffle(input, self.groups)
+
+    def extra_repr(self) -> str:
+        return f'groups={self.groups}'
 
