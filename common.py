@@ -1213,17 +1213,14 @@ class Classify(nn.Module):
             x = torch.cat(x, 1)
         return self.linear(self.drop(self.pool(self.conv(x)).flatten(1)))
       
-class ChannelShuffle(nn.Module):
-    __constants__ = ['groups']
-    groups: int
-
-    def __init__(self, groups: int) -> None:
-        super().__init__()
+class ShuffleBlock(nn.Module):
+    def __init__(self, groups):
+        super(ShuffleBlock, self).__init__()
         self.groups = groups
 
-    def forward(self, input: Tensor) -> Tensor:
-        return F.channel_shuffle(input, self.groups)
-
-    def extra_repr(self) -> str:
-        return f'groups={self.groups}'
+    def forward(self, x):
+        '''Channel shuffle: [N,C,H,W] -> [N,g,C/g,H,W] -> [N,C/g,g,H,w] -> [N,C,H,W]'''
+        N,C,H,W = x.size()
+        g = self.groups
+        return x.view(N,g,C//g,H,W).permute(0,2,1,3,4).reshape(N,C,H,W)
 
