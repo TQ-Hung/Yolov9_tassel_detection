@@ -1212,27 +1212,17 @@ class Classify(nn.Module):
             x = torch.cat(x, 1)
         return self.linear(self.drop(self.pool(self.conv(x)).flatten(1)))
       
-class GSConv(nn.Module):
-    # GSConv https://github.com/AlanLi1997/slim-neck-by-gsconv
-    def __init__(self, c1, c2, k=1, s=1, p=None, g=1, d=1, act=True):
-        super().__init__()
-        c_ = int(c2 // 2)
-        
-        # Sử dụng định nghĩa của class Conv
-        self.cv1 = Conv(c1, c_, k, s, p, g, d, act)
-        self.cv2 = Conv(c_, c_, 5, 1, p, c_, d, act)
+class GhostConv(nn.Module):
+    def __init__(self, c1, c2, k=1, s=1, g=1, act=True, w=None):
+        """Initializes GhostConv with in/out channels, kernel size, stride, groups, and activation; halves out channels
+        for efficiency.
+        """
+        super(GhostConv, self).__init__()
+        c_ = c2 // 2  # hidden channels
+        self.cv1 = Conv(c1, c_, k, s, g, act=act, w=w.cv1)
+        self.cv2 = DWConv(c_, c_, 5, 1, act=act, d=1, w=w.cv2)
 
-    def forward(self, x):
-        # Forward qua cv1 và cv2
-        x1 = self.cv1(x)
-        x2 = torch.cat((x1, self.cv2(x1)), dim=1)
-        
-        # Shuffle layer
-        b, n, h, w = x2.data.size()
-        b_n = b * n // 2
-        y = x2.reshape(b_n, 2, h * w)
-        y = y.permute(1, 0, 2)
-        y = y.reshape(2, b, n // 2, h, w)
-        
-        # Hoán đổi vị trí của y và nối các phần lại với nhau
-        return torch.cat((y[0], y[1]), dim=1)
+    def forward(self, inputs):
+        y = self.cv1(inputs)
+        return torch.cat((y, self.cv2(y)), dim=1)
+
