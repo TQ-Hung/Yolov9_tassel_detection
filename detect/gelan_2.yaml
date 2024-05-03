@@ -31,7 +31,7 @@ backbone:
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 5
 
-   [-1, 1, DWConv, [256, 5, 1]],  #6
+   [-1, 1, DWConv, [256, 3, 1]],  #6
 
    # avg-conv down
    [-1, 1, Conv, [512, 3, 2]],  # 7-P4/8
@@ -39,11 +39,13 @@ backbone:
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 8
 
+   [-1, 1, DWConv, [512, 3, 1]],  #6
+
    # avg-conv down
    [-1, 1, Conv, [512, 3, 2]],  # 9-P5/32
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 10
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 11
   ]
 
 # gelan head
@@ -67,19 +69,23 @@ head:
    [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 17 (P3/8-small)
 
    # avg-conv-down merge
+   [-1, 1, DWConv, [256, 5, 1]],  #6
+
    [-1, 1, Conv, [256, 3, 2]],
-   [[-1, 14], 1, Concat, [1]],  # cat head P4
+   [[-1, 15], 1, Concat, [1]],  # cat head P4
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 22 (P4/16-medium)
 
    # avg-conv-down merge
+   [-1, 1, DWConv, [512, 5, 1]],  #6
+
    [-1, 1, Conv, [512, 3, 2]],
-   [[-1, 11], 1, Concat, [1]],  # cat head P5
+   [[-1, 12], 1, Concat, [1]],  # cat head P5
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 25 (P5/32-large)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 26 (P5/32-large)
 
    # detect
-   [[17, 20, 23], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[17, 22, 26], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
