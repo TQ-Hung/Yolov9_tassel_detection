@@ -70,14 +70,14 @@ head:
    [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 15 (P3/8-small)
 
    # avg-conv-down merge
-   [-1, 1, Conv, [256, 3, 2, 1, 32]],
+   [-1, 1, ADown, [512]],  # 8-P5/32
    [[-1, 16], 1, Concat, [1]],  # cat head P4
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 18 (P4/16-medium)
 
    # avg-conv-down merge
-   [-1, 1, Conv, [512, 3, 2, 1, 64]],
+   [-1, 1, ADown, [1024]],  # 8-P5/32
    [[-1, 13], 1, Concat, [1]],  # cat head P5
 
    # elan-2 block
