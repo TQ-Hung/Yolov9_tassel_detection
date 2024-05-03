@@ -36,7 +36,7 @@ backbone:
    # avg-conv down
    [-1, 1, Conv, [512, 3, 2]],  # 7-P4/8
 
-   [-1, 1, ADown, [512],  # 8-P5/32
+   [-1, 1, ADown, [512]],  # 8-P5/32
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 9
