@@ -81,9 +81,9 @@ head:
    # multi-level reversible auxiliary branch
    
    # routing
-   [5, 1, CBLinear, [[256]]], # 23
-   [7, 1, CBLinear, [[256, 512]]], # 24
-   [9, 1, CBLinear, [[256, 512, 512]]], # 25
+   [5, 1, CBLinear, [[256], 1, 1, 1 32]], # 23
+   [7, 1, CBLinear, [[256, 512], 1, 1, 1, 64]], # 24
+   [9, 1, CBLinear, [[256, 512, 512], 1, 1, 1, 64]], # 25
    
    # conv down
    [0, 1, Conv, [64, 3, 2]],  # 26-P1/2
