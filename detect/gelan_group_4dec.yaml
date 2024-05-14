@@ -86,10 +86,6 @@ head:
 
    [-1, 1, ADown, [1024]],
 
-   # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 25 (P5/32-large)
-
-
    # detect
    [[19, 22, 25, 27], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
