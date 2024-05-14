@@ -85,10 +85,12 @@ head:
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 25 (P5/32-large)
 
    [-1, 1, Conv, [512, 3, 1, 1, 64]],
-   [[-1, 12], 1, Concat, [1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [[-1, 19], 1, Concat, [1]],
 
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 28 (P5/32-large)
 
    # detect
-   [[19, 22, 25, 28], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[19, 22, 25, 30], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
