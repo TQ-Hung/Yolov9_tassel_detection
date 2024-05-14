@@ -87,5 +87,5 @@ head:
    [-1, 1, ADown, [1024]],
 
    # detect
-   [[19, 22, 25, 27], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[19, 22, 25, 26], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
