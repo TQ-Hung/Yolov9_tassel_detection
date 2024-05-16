@@ -14,11 +14,11 @@ anchors: 3
 backbone:
   [
    # conv down
-   [-1, 1, Conv, [64, 1, 2]],  # 0-P1/2
+   [-1, 1, Conv, [64, 1, 2, 1, 2]],  # 0-P1/2
 
-   [-1, 1, Conv, [64, 3, 1]],  # 1-P1/2
+   [-1, 1, Conv, [64, 3, 1, 1, 8]],  # 1-P1/2
    # conv down
-   [-1, 1, Conv, [256, 1, 2]],  # 2-P2/4
+   [-1, 1, Conv, [256, 1, 2, 1, 16]],  # 2-P2/4
 
    [-1, 1, nn.Upsample, [None, 2, 'nearest']],
    [[-1, 0], 1, Concat, [1]],  # cat backbone P3
