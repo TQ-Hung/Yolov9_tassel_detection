@@ -73,7 +73,7 @@ head:
    [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 19 (P3/8-small)
 
    # avg-conv-down merge
-   [-1, 1, ADown, [512]],  # 
+   [-1, 1, ADown, [256]],  # 
    [[-1, 16], 1, Concat, [1]],  # cat head P4
    
    [5, 1, ADown, [128]],  # 
@@ -83,7 +83,7 @@ head:
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 24 (P4/16-medium)
 
    # avg-conv-down merge
-   [-1, 1, ADown, [1024]],  # 
+   [-1, 1, ADown, [512]],  # 
    [[-1, 13], 1, Concat, [1]],  # cat head P5
 
    [8, 1, ADown, [256]],  # 
