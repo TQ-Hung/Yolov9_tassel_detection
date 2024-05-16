@@ -77,7 +77,7 @@ head:
    [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 24 (P2_medium)
 
    [-1, 1, ADown, [512]],  # 5-P5/32
-   [[-1, 14], 1, Concat, [1]],  # cat head Conv P3
+   [[-1, 13], 1, Concat, [1]],  # cat head Conv P3
 
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 27 (P1_small)
    
