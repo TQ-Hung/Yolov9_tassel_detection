@@ -56,36 +56,34 @@ head:
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 13
 
    # up-concat merge
-   [-1, 1, Conv, [128, 3, 1]],  # Conv P3
    [-1, 1, nn.Upsample, [None, 2, 'nearest']],
    [[-1, 5], 1, Concat, [1]],  # cat backbone P3
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 17
+   [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 16
 
    # avg-conv-down merge
-   [-1, 1, Conv, [256, 3, 1]],  # Conv P2
    [-1, 1, nn.Upsample, [None, 2, 'nearest']],
    [[-1, 3], 1, Concat, [1]],  # cat backbone P2
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [256, 128, 64, 1]],  # 21 (P1_large)
+   [-1, 1, RepNCSPELAN4, [256, 128, 64, 1]],  # 19 (P1_large)
 
    [-1, 1, ADown, [256]],  # 5-P5/32
-   [[-1, 18], 1, Concat, [1]],  # cat head Conv P2
+   [[-1, 16], 1, Concat, [1]],  # cat head Conv P2
 
-   [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 24 (P2_medium)
+   [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 22 (P2_medium)
 
    [-1, 1, ADown, [512]],  # 5-P5/32
    [[-1, 13], 1, Concat, [1]],  # cat head Conv P3
 
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 27 (P1_small)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 25 (P1_small)
    
    [-1, 1, ADown, [1024]],  # 5-P5/32
    [[-1, 10], 1, Concat, [1]],  # cat head P4
 
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 30 (P1_verysmall)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 28 (P1_verysmall)
    
    # detect
-   [[21, 24, 27, 30], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[19, 22, 25, 28], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
