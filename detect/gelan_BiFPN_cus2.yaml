@@ -77,7 +77,7 @@ head:
    [-1, 1, ADown, [512]],  # 
    [[-1, 17], 1, Concat, [1]],  # cat head P4
    
-   [6, 1, Conv, [128, 3, 2]],
+   [5, 1, Conv, [128, 3, 2]],
    [[-1, 20], 1, Concat, [1]],
 
    # elan-2 block
@@ -87,7 +87,7 @@ head:
    [-1, 1, ADown, [1024]],  # 
    [[-1, 14], 1, Concat, [1]],  # cat head P5
 
-   [9, 1, Conv, [256, 3, 2]],
+   [7, 1, Conv, [256, 3, 2]],
    [[-1, 27], 1, Concat, [1]],
 
    # elan-2 block
