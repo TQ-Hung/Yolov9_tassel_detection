@@ -95,7 +95,7 @@ head:
    [-1, 1, nn.Upsample, [None, 4, 'nearest']],
    [[-1, 19], 1, Concat, [1]],  # cat head P5
 
-   [3, 1, Conv, [512, 3, 1, 1, 8]],
+   [3, 1, Conv, [512, 3, 2, 1, 8]],
    [[-1, 31], 1, Concat, [1]],
 
    # elan-2 block
