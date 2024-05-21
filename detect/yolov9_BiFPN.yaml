@@ -67,51 +67,57 @@ head:
    [-1, 1, Conv, [256, 3, 2]],
    [[-1, 13], 1, Concat, [1]],  # cat head P4
 
+   [4, 1, Conv, [128, 3, 2, 1, 16]],
+   [[-1, 18], 1, Concat, [1]],
+   
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 19 (P4/16-medium)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 21 (P4/16-medium)
 
    # conv-down merge
    [-1, 1, Conv, [512, 3, 2]],
    [[-1, 10], 1, Concat, [1]],  # cat head P5
 
+   [6, 1, Conv, [256, 3, 2, 1, 32]],
+   [[-1, 23], 1, Concat, [1]],
+
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 22 (P5/32-large)
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 26 (P5/32-large)
    
    # routing
-   [5, 1, CBLinear, [[256]]], # 23
-   [7, 1, CBLinear, [[256, 512]]], # 24
-   [9, 1, CBLinear, [[256, 512, 512]]], # 25
+   [5, 1, CBLinear, [[256]]], # 27
+   [7, 1, CBLinear, [[256, 512]]], # 28
+   [9, 1, CBLinear, [[256, 512, 512]]], # 29
    
    # conv down
-   [0, 1, Conv, [64, 3, 2]],  # 26-P1/2
+   [0, 1, Conv, [64, 3, 2]],  # 30-P1/2
 
    # conv down
-   [-1, 1, Conv, [128, 3, 2]],  # 27-P2/4
+   [-1, 1, Conv, [128, 3, 2]],  # 31-P2/4
 
    # elan-1 block
-   [-1, 1, RepNCSPELAN4, [256, 128, 64, 1]],  # 28
+   [-1, 1, RepNCSPELAN4, [256, 128, 64, 1]],  #32
 
    # conv down fuse
-   [-1, 1, Conv, [256, 3, 2]],  # 29-P3/8
-   [[23, 24, 25, -1], 1, CBFuse, [[0, 0, 0]]], # 30  
+   [-1, 1, Conv, [256, 3, 2]],  # 33-P3/8
+   [[27, 28, 29, -1], 1, CBFuse, [[0, 0, 0]]], # 34  
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 31
+   [-1, 1, RepNCSPELAN4, [512, 256, 128, 1]],  # 35
 
    # conv down fuse
-   [-1, 1, Conv, [512, 3, 2]],  # 32-P4/16
-   [[24, 25, -1], 1, CBFuse, [[1, 1]]], # 33 
+   [-1, 1, Conv, [512, 3, 2]],  # 36-P4/16
+   [[28, 29, -1], 1, CBFuse, [[1, 1]]], # 37
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 34
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 38
 
    # conv down fuse
-   [-1, 1, Conv, [512, 3, 2]],  # 35-P5/32
-   [[25, -1], 1, CBFuse, [[2]]], # 36
+   [-1, 1, Conv, [512, 3, 2]],  # 39-P5/32
+   [[29, -1], 1, CBFuse, [[2]]], # 40
 
    # elan-2 block
-   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 37
+   [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 41
 
    # detect
-   [[31, 34, 37, 16, 19, 22], 1, DualDDetect, [nc]],  # DualDDetect(A3, A4, A5, P3, P4, P5)
+   [[35, 38, 41, 16, 21, 26], 1, DualDDetect, [nc]],  # DualDDetect(A3, A4, A5, P3, P4, P5)
   ]
