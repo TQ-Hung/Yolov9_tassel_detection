@@ -76,10 +76,9 @@ head:
    [-1, 1, ADown, [512]],  # 
    [[-1, 12], 1, Concat, [1]],  # cat head P5
    [[-1, 5], 1, Concat, [1]],
-   # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 26 (P5/32-large)
    
-   [-1, 1, ADown, [512]],  # 
+   [-1, 1, ADown, [1024]],  # 
    [[-1, 9], 1, Concat, [1]],  # cat head P5
    [[-1, 7], 1, Concat, [1]],
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 30 (P5/32-large)
