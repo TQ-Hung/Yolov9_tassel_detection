@@ -91,12 +91,8 @@ head:
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 29 (P5/32-large)
    
-   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
-   [[-1, 19], 1, Concat, [1]],
-
-   [11, 1, nn.Upsample, [None, 2, 'nearest']],
-   [[-1, 31], 1, Concat, [1]],
+   [[23, 28], 1, Concat, [1]],
    
    # detect
-   [[19, 24, 29, 34], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[19, 24, 29, 30], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
