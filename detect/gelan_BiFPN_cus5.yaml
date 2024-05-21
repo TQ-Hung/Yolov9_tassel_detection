@@ -91,6 +91,7 @@ head:
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [512, 512, 256, 1]],  # 29 (P5/32-large)
    
+   [-1, 1, Conv, [512 3, 2]],
    [[-1, 16], 1, Concat, [1]],
 
    # detect
