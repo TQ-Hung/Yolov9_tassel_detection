@@ -17,7 +17,7 @@ backbone:
    # conv down
    [-1, 1, Conv, [64, 3, 2]],  # 0-P1/2
 
-   [-1, 1, SimAM, [e_lambda=1e-4]],  # 0-P1/2
+   [-1, 1, SimAM, [1e-4]],  # 0-P1/2
 
    # conv down
    [-1, 1, Conv, [128, 3, 2]],  # 1-P2/4
