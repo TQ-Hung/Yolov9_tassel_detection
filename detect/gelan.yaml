@@ -82,5 +82,5 @@ head:
    [-1, 1, SimAM, [1e-4]],  # 24
 
    # detect
-   [[16, 19, 24], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
+   [[16, 20, 24], 1, DDetect, [nc]],  # Detect(P3, P4, P5)
   ]
