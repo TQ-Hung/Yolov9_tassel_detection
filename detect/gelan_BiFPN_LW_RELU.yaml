@@ -4,7 +4,7 @@
 nc: 80  # number of classes
 depth_multiple: 1.0  # model depth multiple
 width_multiple: 1.0  # layer channel multiple
-activation: nn.LeakyReLU(0.1)
+#activation: nn.LeakyReLU(0.1)
 #activation: nn.ReLU()
 
 # anchors
@@ -68,6 +68,7 @@ head:
 
    # elan-2 block
    [-1, 1, RepNCSPELAN4, [256, 256, 128, 1]],  # 19 (P3/8-small)
+   
 
    # avg-conv-down merge
    [-1, 1, ADown, [256]],  # 
